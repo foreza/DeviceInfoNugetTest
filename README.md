@@ -79,6 +79,7 @@ namespace winrt::SDKTemplate::implementation
     
     };
 }
+```
 
 ### Snippet B
 

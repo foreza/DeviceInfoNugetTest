@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DeviceInfoFetcher</id>
+    <version>0.0.0</version>
+    <title>DeviceInfoFetcher</title>
+    <authors>jforeza</authors>
+    <owners>jforeza</owners>
+    <description>Test</description>
+    <releaseNotes>
+      - this is a note.
+    </releaseNotes>
+    <copyright>Copyright 2021</copyright>
+    <tags>Youit</tags>
+    <dependencies>
+      <group targetFramework="netcore50"/>
+      <group targetFramework="uap10.0"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\DeviceInfoFetcher.winmd" target="lib\uap10.0"/>
+    <file src="bin\Release\DeviceInfoFetcher.xml" target="lib\uap10.0"/>
+    <file src="bin\Release\DeviceInfoFetcher.winmd" target="lib\netcore50"/>
+    <file src="bin\Release\DeviceInfoFetcher.xml" target="lib\netcore50"/>
+
+    <!-- win10-x64 -->
+    <file src="bin\x64\Release\DeviceInfoFetcher.winmd" target="runtimes\win10-x64\lib\uap10.0"/>
+    <file src="bin\x64\Release\DeviceInfoFetcher.pri" target="runtimes\win10-x64\lib\uap10.0"/>
+    <file src="bin\x64\Release\DeviceInfoFetcher.pdb" target="runtimes\win10-x64\lib\uap10.0"/>
+
+    <!-- win10-x86 -->
+    <file src="bin\x86\Release\DeviceInfoFetcher.winmd" target="runtimes\win10-x86\lib\uap10.0"/>
+    <file src="bin\x86\Release\DeviceInfoFetcher.pri" target="runtimes\win10-x86\lib\uap10.0"/>
+    <file src="bin\x86\Release\DeviceInfoFetcher.pdb" target="runtimes\win10-x86\lib\uap10.0"/>
+
+    <file src="DeviceInfoFetcher.targets" target="build\native"/>
+
+  </files>
+</package>

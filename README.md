@@ -11,7 +11,7 @@ I've created a barebones framework which demonstrates the issue.
 The issue may be with how we are building the nuget as well - so I'm exposing that process in hopes that we can figure out what is the issue.
 
 ## To build the nuget:
-- Open DeviceInfoFetcher.sln
+- Open DeviceInfoFetcher/DeviceInfoFetcher.sln
 - Restore all nuget packages for the solution
 - Rebuild the project for Release x64/x86
 - Run Prepackage.bat (using Developer Command Prompt)

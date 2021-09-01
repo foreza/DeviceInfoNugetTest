@@ -2,6 +2,13 @@
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <!-- Start Custom .NET Native properties -->
+    <DotNetNativeVersion>2.2.9-rel-29512-01</DotNetNativeVersion>
+    <DotNetNativeSharedLibrary>2.2.8-rel-29722-00</DotNetNativeSharedLibrary>
+    <UWPCoreRuntimeSdkVersion>2.2.12</UWPCoreRuntimeSdkVersion>
+    <!--<NugetPath>$(USERPROFILE)\.nuget\packages</NugetPath>-->
+    <NugetPath>$(ProgramFiles)\Microsoft SDKs\UWPNuGetPackages</NugetPath>
+    <!-- End Custom .NET Native properties -->
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{90A1014F-5647-43DE-BA83-4EE784E8530B}</ProjectGuid>
@@ -12,12 +19,28 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AllowCrossPlatformRetargeting>false</AllowCrossPlatformRetargeting>
   </PropertyGroup>
+  <!-- Start Custom .NET Native targets -->
+  <!-- Import all of the .NET Native / CoreCLR props at the beginning of the project -->
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\Microsoft.Net.UWPCoreRuntimeSdk\$(UWPCoreRuntimeSdkVersion)\build\Microsoft.Net.UWPCoreRuntimeSdk.props" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk\$(UWPCoreRuntimeSdkVersion)\build\runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.props" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-x64.Microsoft.Net.UWPCoreRuntimeSdk\$(UWPCoreRuntimeSdkVersion)\build\runtime.win10-x64.Microsoft.Net.UWPCoreRuntimeSdk.props" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-arm.Microsoft.Net.UWPCoreRuntimeSdk\$(UWPCoreRuntimeSdkVersion)\build\runtime.win10-arm.Microsoft.Net.UWPCoreRuntimeSdk.props" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\Microsoft.Net.Native.Compiler\$(DotNetNativeVersion)\build\Microsoft.Net.Native.Compiler.props" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-x86.Microsoft.Net.Native.Compiler\$(DotNetNativeVersion)\build\runtime.win10-x86.Microsoft.Net.Native.Compiler.props" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-x64.Microsoft.Net.Native.Compiler\$(DotNetNativeVersion)\build\runtime.win10-x64.Microsoft.Net.Native.Compiler.props" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-arm.Microsoft.Net.Native.Compiler\$(DotNetNativeVersion)\build\runtime.win10-arm.Microsoft.Net.Native.Compiler.props" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-arm64.Microsoft.Net.Native.Compiler\$(DotNetNativeVersion)\build\runtime.win10-arm64.Microsoft.Net.Native.Compiler.props" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-x86.Microsoft.Net.Native.SharedLibrary\$(DotNetNativeSharedLibrary)\build\runtime.win10-x86.Microsoft.Net.Native.SharedLibrary.props" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-x64.Microsoft.Net.Native.SharedLibrary\$(DotNetNativeSharedLibrary)\build\runtime.win10-x64.Microsoft.Net.Native.SharedLibrary.props" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-arm.Microsoft.Net.Native.SharedLibrary\$(DotNetNativeSharedLibrary)\build\runtime.win10-arm.Microsoft.Net.Native.SharedLibrary.props" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-arm64.Microsoft.Net.Native.SharedLibrary\$(DotNetNativeSharedLibrary)\build\runtime.win10-arm64.Microsoft.Net.Native.SharedLibrary.props" />
+  <!-- End Custom .NET Native targets -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
@@ -147,4 +170,18 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <!-- Import all of the .NET Native / CoreCLR targets at the end of the project -->
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk\$(UWPCoreRuntimeSdkVersion)\build\runtime.win10-x86.Microsoft.Net.UWPCoreRuntimeSdk.targets" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-x64.Microsoft.Net.UWPCoreRuntimeSdk\$(UWPCoreRuntimeSdkVersion)\build\runtime.win10-x64.Microsoft.Net.UWPCoreRuntimeSdk.targets" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-arm.Microsoft.Net.UWPCoreRuntimeSdk\$(UWPCoreRuntimeSdkVersion)\build\runtime.win10-arm.Microsoft.Net.UWPCoreRuntimeSdk.targets" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\Microsoft.Net.Native.Compiler\$(DotNetNativeVersion)\build\Microsoft.Net.Native.Compiler.targets" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-x86.Microsoft.Net.Native.Compiler\$(DotNetNativeVersion)\build\runtime.win10-x86.Microsoft.Net.Native.Compiler.targets" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-x64.Microsoft.Net.Native.Compiler\$(DotNetNativeVersion)\build\runtime.win10-x64.Microsoft.Net.Native.Compiler.targets" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-arm.Microsoft.Net.Native.Compiler\$(DotNetNativeVersion)\build\runtime.win10-arm.Microsoft.Net.Native.Compiler.targets" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-arm64.Microsoft.Net.Native.Compiler\$(DotNetNativeVersion)\build\runtime.win10-arm64.Microsoft.Net.Native.Compiler.targets" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-x86.Microsoft.Net.Native.SharedLibrary\$(DotNetNativeSharedLibrary)\build\runtime.win10-x86.Microsoft.Net.Native.SharedLibrary.targets" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-x64.Microsoft.Net.Native.SharedLibrary\$(DotNetNativeSharedLibrary)\build\runtime.win10-x64.Microsoft.Net.Native.SharedLibrary.targets" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-arm.Microsoft.Net.Native.SharedLibrary\$(DotNetNativeSharedLibrary)\build\runtime.win10-arm.Microsoft.Net.Native.SharedLibrary.targets" />
+  <Import Condition="'$(WindowsTargetPlatformMinVersion)' == '10.0.16299.0'" Project="$(NugetPath)\runtime.win10-arm64.Microsoft.Net.Native.SharedLibrary\$(DotNetNativeSharedLibrary)\build\runtime.win10-arm64.Microsoft.Net.Native.SharedLibrary.targets" />
+  <!-- End Custom .NET Native targets -->
 </Project>

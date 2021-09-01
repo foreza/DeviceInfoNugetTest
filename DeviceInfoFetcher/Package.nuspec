@@ -2,13 +2,14 @@
 <package >
   <metadata>
     <id>DeviceInfoFetcher</id>
-    <version>0.0.0</version>
+    <version>0.0.6</version>
     <title>DeviceInfoFetcher</title>
     <authors>jforeza</authors>
     <owners>jforeza</owners>
     <description>Test</description>
     <releaseNotes>
       - this is a note.
+      - i added a lot of stuff to the csproj to get this to try to work.
     </releaseNotes>
     <copyright>Copyright 2021</copyright>
     <tags>Youit</tags>

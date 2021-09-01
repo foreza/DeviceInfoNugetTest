@@ -1,14 +1,10 @@
 # DeviceInfoNugetTest
 
 Basic test to troubleshoot WinRT/CPP from 15063 -> 16299.
-
 The premise is supporting ARM for our SDK, which mandates we change our min target.
-
 When the min target is changed, I'm unable to run our sample apps for C++/WinRT.
-
 I've created a barebones framework which demonstrates the issue.
 
-The issue may be with how we are building the nuget as well - so I'm exposing that process in hopes that we can figure out what is the issue.
 
 ## To build the nuget:
 - Open DeviceInfoFetcher/DeviceInfoFetcher.sln
@@ -101,3 +97,25 @@ void App::OnLaunched(LaunchActivatedEventArgs const& e)
 }
 
 ```
+
+
+
+# Solution to this issue
+
+After a lot of trial + error and some googling, I stumbled up on this:
+https://docs.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/use-csharp-component-from-cpp-winrt#application-minimum-version
+
+After implementing the following changes in this C# library, and then also adding this to the target C++ project:
+
+```xml
+<PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+...
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)'=='ARM64'" Label="Configuration">
+    <UseDotNetNativeToolchain Condition="'$(UseDotNetNativeToolchain)'==''">true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+```
+
+I added this for my debug configuration, but presumably this needs to be added for any/all configurations.
+After I added this line, I was able to compile, run, and also invoke the library via CPP/WinRT. 
